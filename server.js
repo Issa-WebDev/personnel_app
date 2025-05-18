@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const PORT = 5000;
+const PORT = 5000 || 5000;
 
 const app = express();
 app.set("view engine", "ejs");

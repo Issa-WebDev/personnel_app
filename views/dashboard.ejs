@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tableau de bord</title>
+  <link href="/output.css" rel="stylesheet" />
+</head>
+<body class="bg-gradient-to-tr from-gray-100 to-blue-50 p-10 min-h-screen">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-blue-700">Tableau de bord</h1>
+    <div class="space-x-4">
+      <a href="/add-personnel" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">+ Ajouter un personnel</a>
+      <a href="/logout" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Se déconnecter</a>
+    </div>
+  </div>
+
+  <p class="mb-4 text-lg font-semibold text-gray-700">Nombre total de personnels : <span class="text-blue-800"><%= personnels.length %></span></p>
+
+  <div class="overflow-x-auto bg-white shadow-md">
+    <table class="min-w-full border border-gray-200">
+      <thead class="bg-blue-100 text-blue-800 font-semibold">
+        <tr>
+          <th class="p-2 border">Nom</th>
+          <th class="p-2 border">Prénoms</th>
+          <th class="p-2 border">Genre</th>
+          <th class="p-2 border">Téléphone</th>
+          <th class="p-2 border">Département</th>
+          <th class="p-2 border">Profession</th>
+          <th class="p-2 border">Salaire</th>
+          <th class="p-2 border">Embauche</th>
+          <th class="p-2 border">Enfants</th>
+          <th class="p-2 border">Matrimoniale</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% personnels.forEach(p => { %>
+        <tr class="hover:bg-gray-50">
+          <td class="border p-2"><%= p.nom %></td>
+          <td class="border p-2"><%= p.prenoms %></td>
+          <td class="border p-2"><%= p.genre %></td>
+          <td class="border p-2"><%= p.phone %></td>
+          <td class="border p-2"><%= p.departement %></td>
+          <td class="border p-2"><%= p.profession %></td>
+          <td class="border p-2"><%= p.salaire %> FCFA</td>
+          <td class="border p-2"><%= p.date_embauche.toISOString().slice(0,10) %></td>
+          <td class="border p-2"><%= p.nombre_enfant %></td>
+          <td class="border p-2"><%= p.situation_matrimoniale %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

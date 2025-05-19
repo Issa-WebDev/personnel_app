@@ -1,13 +1,13 @@
 const express = require("express");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
-const path = require("path");
+// const path = require("path");
 const db = require("./database");
 const dotenv = require("dotenv");
 
 dotenv.config();
 
-const PORT = 5000 || 5000;
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 app.set("view engine", "ejs");
@@ -16,7 +16,7 @@ app.use(express.static("dist"));
 
 app.use(
   session({
-    secret: "secretkey",
+    secret: process.env.SESSON_SECRET_KEY,
     resave: false,
     saveUninitialized: false,
   })
@@ -33,6 +33,8 @@ app.get("/", (req, res) => res.redirect("/login"));
 app.get("/register", (req, res) => res.render("register"));
 app.post("/register", async (req, res) => {
   const { email, password } = req.body;
+  // const email = req.body.email;
+  // const password = req.body.password;
 
   db.query(
     "SELECT * FROM users WHERE email = ?",
